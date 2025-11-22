@@ -1,0 +1,18 @@
+.TS_heading{
+    width: 100%;
+    font-size: 22px;
+    color: black;
+}
+
+.TS_main_container{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: flex-start; 
+    flex-wrap: wrap;
+    color: black;  
+    border-radius: 10px;
+}
+.TS_main_container:hover{
+    background-color: steelblue;
+    border-style: dotted;
+}

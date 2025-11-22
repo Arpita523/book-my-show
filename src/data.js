@@ -3,7 +3,6 @@ export const moviesList = [
   "Interstellar",
   "Avatar",
   "Titanic",
-  "The Matrix",
   "RRR",
   "Pushpa",
   "Jawan",
