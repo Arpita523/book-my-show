@@ -1,25 +1,36 @@
-.form-ceck-label{
+.form-ceck-label {
     display: flex;
-    text-align: center;
-    justify-content: center;
     align-items: center;
-    max-width: fit-content;
-}
-.form-ceck-label:hover{
-    background-color:dodgerblue;
-    border-style: dotted;
-    border-radius: 5px;
-    margin: 5px;
-}
-.seats-input{
-    width: 70%;
-    border-radius: 10px;
-    margin-left: 10px;
-    text-align: center;
+    justify-content: space-between;
+    width: 120px;             
+    padding: 6px 10px;
     border: 2px solid black;
-    padding: 5px;
-    margin: 5px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
-.seats-input:hover{
-    background-color:mediumpurple;
+
+.form-ceck-label:hover {
+    background-color: dodgerblue;
+    color: white;
 }
+
+.text {
+    font-weight: 600;
+}
+
+.seats-input {
+    width: 45px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1.5px solid black;
+    padding: 3px;
+}
+
+.seats-input:hover {
+    background-color: mediumpurple;
+    color: white;
+}
+
+

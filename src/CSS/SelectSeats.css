@@ -1,12 +1,16 @@
-.ss_main_container{
+
+.SS_main_container {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    color: black;
+    gap: 12px;               
+    align-items: center;
+    justify-content: flex-start;
 }
-.ss_heading{
+
+.SS_heading {
     width: 100%;
     font-size: 22px;
     color: black;
+    margin-bottom: 12px;
 }
