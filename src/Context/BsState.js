@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BsContext from "./BsContext";
 
 const BsState = (props) => {
+  const [errorPopup, setErrorPopup] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
     const [movie, changeMovie] = useState('');
     const [time, changeTime] = useState('');
     const [noOfSeats, changeNoOfSeats] = useState({
@@ -19,11 +22,58 @@ const BsState = (props) => {
         D3: "",      
     });
 
-    const [lastBookingDetails, changeLastBookingDetails] = useState(null)
+    const [lastBookingDetails, setLastBookingDetails] = useState(null)
+
+    const handlePostBooking = async () => {
+      const response = await fetch(`http://localhost:5000/api/bookings`, {
+        method: 'POST',
+        headers: {  
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          movie : movie,
+          slot : time,
+          seats : noOfSeats
+        })
+      })
+      const data = await response.json()
+      setErrorPopup(true);
+      setErrorMessage(data.message)
+
+      if(response.status === 200){
+        changeTime("")
+        changeMovie("")
+        setLastBookingDetails(data.data)
+
+        localStorage.clear();
+      }
+    }
+    const handleGetBooking = async () => {
+      const response = await fetch(`http://localhost:5000/api/bookings`, {
+        method: 'GET',
+      })
+      const data = await response.json()
+      setLastBookingDetails(data.data)
+    }
+    useEffect(() => {
+      const movie = localStorage.getItem("movie")
+      const slot = localStorage.getItem("slot")
+      const seats = JSON.parse(localStorage.getItem("seats"))
+
+      if(movie){
+        changeMovie(movie)
+      }
+      if(slot){
+        changeTime(slot)
+      }
+      if(seats){
+        changeNoOfSeats(seats)
+      }
+    }, [])
 
   return (
-    <BsContext.Provider value={{movie, changeMovie, time, changeTime, noOfSeats, changeNoOfSeats, lastBookingDetails,changeLastBookingDetails }}>{props.children}</BsContext.Provider>
+    <BsContext.Provider value={{movie, changeMovie, time, changeTime, noOfSeats, changeNoOfSeats, lastBookingDetails,setLastBookingDetails, handleGetBooking, handlePostBooking, errorMessage, errorPopup, setErrorMessage, setErrorPopup }}>{props.children}</BsContext.Provider>
   )
 }
 
-export default BsState
+export default BsState;
